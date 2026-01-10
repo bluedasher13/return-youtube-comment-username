@@ -17,7 +17,7 @@ const asyncSyncSettings =
     ? async (settings: RycuSettings) => {
         Promise.resolve().then(() => syncSettings(settings));
       }
-    : async (settings: RycuSettings) => {};
+    : async () => {};
 
 const chat = document.querySelector("#chat");
 const cache: Record<string, string> = {};
