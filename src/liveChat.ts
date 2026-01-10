@@ -8,6 +8,10 @@ if (getRunningRuntime() === "Extension") {
   syncSettings(parent.window.__rycu.settings);
 }
 
+chrome.storage.onChanged.addListener((changes) => {
+  syncSettings(parent.window.__rycu.settings);
+});
+
 const asyncSyncSettings =
   getRunningRuntime() === "Extension"
     ? async (settings: RycuSettings) => {

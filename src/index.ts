@@ -29,6 +29,9 @@ export default function main(): void {
       document.addEventListener("yt-navigate-finish", () => {
         syncSettings(settings);
       });
+      chrome.storage.onChanged.addListener((changes) => {
+        syncSettings(settings);
+      });
     })(window.__rycu.settings);
   }
 
