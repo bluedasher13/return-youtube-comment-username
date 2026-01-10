@@ -8,8 +8,12 @@ if (getRunningRuntime() === "Extension") {
   syncSettings(parent.window.__rycu.settings);
 }
 
-chrome.storage.onChanged.addListener((changes) => {
-  syncSettings(parent.window.__rycu.settings);
+chrome.storage.onChanged.addListener((changes, area) => {
+  console.log("Storage changed:", changes, area);
+  if (area !== "local") return;
+  if (changes.initialized) {
+    syncSettings(parent.window.__rycu.settings);
+  }
 });
 
 const asyncSyncSettings =

@@ -1,4 +1,5 @@
 export interface RycuStorage {
+  initialized: boolean;
   showHandleToName: boolean;
   showNameToHandle: boolean;
   replaceComments: boolean;
@@ -6,6 +7,7 @@ export interface RycuStorage {
 }
 
 export const getDefaultStorageCache = (): RycuStorage => ({
+  initialized: false,
   showHandleToName: false,
   showNameToHandle: false,
   replaceComments: true,

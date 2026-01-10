@@ -29,8 +29,12 @@ export default function main(): void {
       document.addEventListener("yt-navigate-finish", () => {
         syncSettings(settings);
       });
-      chrome.storage.onChanged.addListener((changes) => {
-        syncSettings(settings);
+      chrome.storage.onChanged.addListener((changes, area) => {
+        console.log("Storage changed:", changes, area);
+        if (area !== "local") return;
+        if (changes.initialized) {
+          syncSettings(settings);
+        }
       });
     })(window.__rycu.settings);
   }
