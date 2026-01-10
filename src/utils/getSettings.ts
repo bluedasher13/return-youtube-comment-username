@@ -1,12 +1,11 @@
 import { type RycuSettings, getDefaultSettings } from "src/types/RycuSettings";
-import { type RycuStorage, getDefaultStorageCache } from "src/types/Storage";
+import { type RycuStorage } from "src/types/Storage";
 
 export function getSettings(): Promise<RycuSettings> {
-  const defaultStorageCache: RycuStorage = getDefaultStorageCache();
   const defaultSettings: RycuSettings = getDefaultSettings();
 
   return chrome.storage.local
-    .get({
+    .get(<RycuStorage>{
       showHandleToName: defaultSettings.isShowHandleToName,
       showNameToHandle: defaultSettings.isShowNameToHandle,
       replaceComments: defaultSettings.isReplaceComments,
